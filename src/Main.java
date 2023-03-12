@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         task1();
@@ -38,7 +40,7 @@ public class Main {
         System.out.println(" Задача 2 ");//Пример через цикл for на понижение цифр от 10 до 0.
 
         int i = 10;
-        for (; i > 0; i--) {
+        for (; i >= 0; i--) { // исправил,теперь понял какой символ поствить, чтобы вывод в консоле был с 0.
             System.out.println("\n" + i);
         }
     }
@@ -105,8 +107,9 @@ public class Main {
         System.out.println(" Задача 7");
 
         int totalDays = 31;
-        int i = 5;
-        for (; i < totalDays; i = i + 7) {
+        int i = 3; // Заменил значение 5 на 3, чтобы наглядно увидеть, что 31 число наглядно выведеться в консоль.
+        for (; i <= totalDays; i = i + 7) { // Так же тут добавил символ <= , чтобы программа считала значение,
+            // Если число выпадет на 31, то оно его покажет.
             System.out.println("\n" + "Сегодня пятница  " + i + " -е число. Необходимо подготовить отчет ");
         }
     }
@@ -114,14 +117,15 @@ public class Main {
     private static void task9() {
         System.out.println(" Задача 8");
 
-        int  totalYears = 0;
-        int i = 0;
-        while (totalYears <= 2023 + 100) {
-            i = i + 79;
-            totalYears = 1823 + i;
-            System.out.println("\n" + totalYears); // я решал задачу взяв за пример,что год отсчета у нас 0
-            // но мы знаем ,что у нас от 2023 - 200 = 1823.
-            // Из-за этого мои цифра разошлись с примерами,которые были даны в решении на 4 показателя.
+        int maxInterval = LocalDate.now().getYear();
+        // Определяем текущий год и ложим времено в переменную maxInterval.
+        // Пользовался библиотекой java. ( подсказал друг)
+        int minInterval = maxInterval - 200;
+        maxInterval += 100;
+        for (int i = 0; i < maxInterval; i += 79) {
+            if (i >= minInterval) {
+                System.out.println("\n" + i);
+            }
         }
     }
 }
